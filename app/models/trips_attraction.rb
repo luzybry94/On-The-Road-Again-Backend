@@ -1,0 +1,2 @@
+class TripsAttraction < ApplicationRecord
+end
