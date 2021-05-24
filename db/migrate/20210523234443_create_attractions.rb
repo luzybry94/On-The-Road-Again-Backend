@@ -3,9 +3,8 @@ class CreateAttractions < ActiveRecord::Migration[6.0]
     create_table :attractions do |t|
       t.string :name
       t.decimal :price
-      t.string :img
       t.date :date
-      t.location :belongs_to
+      t.belongs_to :location
 
       t.timestamps
     end
