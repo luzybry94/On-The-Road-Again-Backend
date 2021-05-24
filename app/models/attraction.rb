@@ -1,3 +1,4 @@
 class Attraction < ApplicationRecord
-    belongs_to :location
+    has_many :trips_attractions
+    has_many :trips, through: :trips_attractions
 end
