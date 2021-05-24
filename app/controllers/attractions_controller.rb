@@ -46,6 +46,6 @@ class AttractionsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def attraction_params
-      params.require(:attraction).permit(:name, :price, :date, :belongs_to)
+      params.require(:attraction).permit(:name, :pricing, :date, :img, :location)
     end
 end
