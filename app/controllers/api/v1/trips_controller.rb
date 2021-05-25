@@ -1,9 +1,10 @@
-class TripsController < ApplicationController
+class Api::V1::TripsController < ApplicationController
   before_action :set_trip, only: [:show, :update, :destroy]
 
   # GET /trips
   def index
     @trips = Trip.all
+    # MovieSerializer.new(movie).serializable_hash.to_json
 
     render json: @trips
   end
