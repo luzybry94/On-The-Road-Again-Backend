@@ -3,8 +3,7 @@ class Api::V1::TripsController < ApplicationController
 
   # GET /trips
   def index
-    @trips = Trip.all
-    # MovieSerializer.new(movie).serializable_hash.to_json
+    @trips = Trip.where(user_id: params[:user_id])
 
     render json: @trips
   end
@@ -19,7 +18,7 @@ class Api::V1::TripsController < ApplicationController
     @trip = Trip.new(trip_params)
 
     if @trip.save
-      render json: @trip, status: :created, location: @trip
+      render json: @trip, status: :created
     else
       render json: @trip.errors, status: :unprocessable_entity
     end
@@ -47,6 +46,6 @@ class Api::V1::TripsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def trip_params
-      params.require(:trip).permit(:name, :start_date, :end_date, :img, :belongs_to)
+      params.permit(:name, :start_date, :end_date, :img, :user_id, state_ids: [])
     end
 end
