@@ -6,6 +6,7 @@ class CreateAttractions < ActiveRecord::Migration[6.0]
       t.date :date
       t.string :img
       t.string :location
+      t.belongs_to :trip
 
       t.timestamps
     end
