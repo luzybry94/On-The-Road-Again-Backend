@@ -21,8 +21,10 @@ ActiveRecord::Schema.define(version: 2021_05_24_082653) do
     t.date "date"
     t.string "img"
     t.string "location"
+    t.bigint "trip_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["trip_id"], name: "index_attractions_on_trip_id"
   end
 
   create_table "states", force: :cascade do |t|
@@ -49,15 +51,6 @@ ActiveRecord::Schema.define(version: 2021_05_24_082653) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_trips_on_user_id"
-  end
-
-  create_table "trips_attractions", force: :cascade do |t|
-    t.bigint "trip_id"
-    t.bigint "attraction_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["attraction_id"], name: "index_trips_attractions_on_attraction_id"
-    t.index ["trip_id"], name: "index_trips_attractions_on_trip_id"
   end
 
   create_table "trips_states", force: :cascade do |t|
