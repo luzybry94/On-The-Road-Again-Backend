@@ -3,7 +3,7 @@ class Api::V1::TripsController < ApplicationController
 
   # GET /trips
   def index
-    @trips = Trip.where(user_id: params[:user_id])
+    @trips = Trip.where(user_id: logged_in_user.id)
 
     render json: @trips
   end
@@ -15,7 +15,7 @@ class Api::V1::TripsController < ApplicationController
 
   # POST /trips
   def create
-    @trip = Trip.new(trip_params)
+    @trip = logged_in_user.trips.new(trip_params)
 
     if @trip.save
       render json: @trip, status: :created
@@ -46,6 +46,6 @@ class Api::V1::TripsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def trip_params
-      params.permit(:name, :start_date, :end_date, :img, :user_id, state_ids: [])
+      params.permit(:name, :start_date, :end_date, :img, state_ids: [])
     end
 end
