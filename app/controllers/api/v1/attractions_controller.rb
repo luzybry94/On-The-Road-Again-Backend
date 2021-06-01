@@ -3,7 +3,7 @@ class Api::V1::AttractionsController < ApplicationController
 
   # GET /attractions
   def index
-    @attractions = Attraction.all
+    @attractions = Attraction.where(trip_id: params[:trip_id])
 
     render json: @attractions
   end
@@ -18,7 +18,7 @@ class Api::V1::AttractionsController < ApplicationController
     @attraction = Attraction.new(attraction_params)
 
     if @attraction.save
-      render json: @attraction, status: :created, location: @attraction
+      render json: @attraction, status: :created
     else
       render json: @attraction.errors, status: :unprocessable_entity
     end
@@ -46,6 +46,6 @@ class Api::V1::AttractionsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def attraction_params
-      params.require(:attraction).permit(:name, :pricing, :date, :img, :location)
+      params.permit(:name, :pricing, :date, :img, :location, :trip_id)
     end
 end
