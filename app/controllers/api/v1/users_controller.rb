@@ -7,12 +7,12 @@ class Api::V1::UsersController < ApplicationController
         token = encode_token(user_id: @user.id)
         render json: {status: 201, user: UserSerializer.new(@user), jwt: token, logged_in: true}
       else
-        render json: { error: 'Account with that email already exists' }, status: :not_acceptable
+        render json: { error: 'Account with that username already exists' }
       end
     end
   
     private
     def user_params
-      params.permit(:name, :email, :username, :password)
+      params.permit(:name, :username, :password)
     end
 end
