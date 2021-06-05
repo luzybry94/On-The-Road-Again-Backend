@@ -2,11 +2,10 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :trips, only: [:index, :show, :create] do
-        resources :attractions, only: [:index, :create]
-        resources :todos, only: [:create, :update]
+      resources :trips do
+        resources :attractions, only: [:index, :create, :update, :destroy]
+        resources :todos, only: [:create, :update, :destroy]
       end
-      
       post '/signup', to: 'users#create'
       get '/states', to: 'states#index'
       post '/login', to: 'auth#create'
