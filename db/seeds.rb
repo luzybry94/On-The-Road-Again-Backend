@@ -6,14 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 User.destroy_all
-
 Trip.destroy_all
-
-Attraction.destroy_all
-
 State.destroy_all
 
-luzy = User.create(name: 'Luzy Bryski', email: 'luzy@gmail.com', username: 'luzyb', password: 'password')
+luzy = User.create(name: 'Luzy Bryski', username: 'luzyb', password: 'password')
 
 west = Trip.create(name: 'West Coast Trippin', start_date: '2021-05-25', end_date: '2021-06-03', img: 'https://res.cloudinary.com/dlhbuxc82/image/upload/v1621923590/westcoast_zqqr3b.jpg', user: luzy)
 east = Trip.create(name: 'Ny Baby!', start_date: '2021-06-15', end_date: '2021-06-25', img: 'https://res.cloudinary.com/dlhbuxc82/image/upload/v1621923589/eastcoast_mknbr9.jpg', user: luzy)
