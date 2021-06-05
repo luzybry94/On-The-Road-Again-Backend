@@ -35,7 +35,11 @@ class Api::V1::AttractionsController < ApplicationController
 
   # DELETE /attractions/1
   def destroy
-    @attraction.destroy
+    if @attraction.destroy
+      render json: @attraction.id, status: :ok
+    else
+      render json: {error: "Delete Unsuccessful"}, status: :unprocessable_entity
+    end
   end
 
   private
