@@ -35,16 +35,19 @@ class Api::V1::TripsController < ApplicationController
 
   # DELETE /trips/1
   def destroy
-    @trip.destroy
+    if @trip.destroy
+      render json: @trip.id, status: :ok
+    else
+      render json: {error: "Delete Unsuccessful"}, status: :unprocessable_entity
+    end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_trip
       @trip = Trip.find(params[:id])
     end
 
-    # Only allow a trusted parameter "white list" through.
     def trip_params
       params.permit(:name, :start_date, :end_date, :img, state_ids: [])
     end
